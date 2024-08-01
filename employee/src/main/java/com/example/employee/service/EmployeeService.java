@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.employee.dto.Employee;
+import com.example.employee.exceptionH.DateFormatWrong;
 import com.example.employee.repo.EmpRepository;
 
 @Service
@@ -124,7 +125,7 @@ public class EmployeeService {
 			return formatter.parse(dateString);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new DateFormatWrong(" Date format is wrong need like MM/dd/yyyy");
 		}
 	}
 
@@ -134,7 +135,8 @@ public class EmployeeService {
 			return formatter.parse(dateString);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			throw new DateFormatWrong(" Date format is wrong need like yyyy-MM-dd");
+			
 		}
 	}
 
